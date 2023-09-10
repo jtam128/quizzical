@@ -1,4 +1,5 @@
 import React from "react";
+import { decode } from "html-entities";
 
 export default function Questions() {
   const [questions, setQuestions] = React.useState([]);
@@ -19,7 +20,7 @@ export default function Questions() {
       {questions.map((item) => (
         <div>
           <p>category: {item.category}</p>
-          <p>{item.question}</p>
+          <p>{decode(item.question)}</p>
           <br />
         </div>
       ))}
