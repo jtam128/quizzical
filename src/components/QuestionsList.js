@@ -9,7 +9,7 @@ export default function QuestionsList(props) {
     employment: "",
   });
 
-  const { incorrect_answers, correct_answer } = props;
+  const { category, question, incorrect_answers, correct_answer } = props.item;
 
   // const [randomizeAns, setRandomizeAns] = React.useState([]);
 
@@ -23,20 +23,23 @@ export default function QuestionsList(props) {
     return arr;
   }
 
-  const allAns = [props.correct_answer, ...props.incorrect_answers];
+  const allAns = [correct_answer, ...incorrect_answers];
 
   useEffect(() => {
     // setTempArray(["a", "b", "c"]);
-    setTempArray(allAns);
-
+    // setTempArray(allAns);
     // return (cleanUp = () => {});
+    // let tempArray1 = shuffleArray(allAns);
+    // let tempArray1 = allAns;
+    // setTempArray(tempArray1);
+    // setTempArray([...allAns]);
   }, []);
 
   // let shuffledArray = shuffleArray(allAns);
-  if (!randomizeAns.length) {
-    let tempArray = shuffleArray(allAns);
-    // setRandomizeAns(shuffleArray(tempArray));
-  }
+
+  // let tempArray1 = shuffleArray(allAns);
+  // setRandomizeAns(shuffleArray(tempArray));
+
   // setRandomizeAns(allAns);
 
   // return (cleanUp = () => {});
@@ -57,16 +60,22 @@ export default function QuestionsList(props) {
 
   return (
     // <ul className="ans-container">
-    <form>
-      {tempArray.map((ans, index) => (
-        <div key={index}>
-          <p>{index}</p>
-          <p>{ans}</p>
-          <p>{printx && console.log("aaa", tempArray[0])}</p>
-          {/* <p>decode answer {decode(ans)}</p>
+    <div>
+      <h1>{decode(question)}</h1>
+      {/* <h1>{allAns}</h1> */}
+      <form>
+        {/* {tempArray.map((ans, index) => ( */}
+        {allAns.map((ans, index) => (
+          <div key={index}>
+            <p>
+              {index} - {ans}
+            </p>
+
+            <p>{printx && console.log("aaa", tempArray[0])}</p>
+            {/* <p>decode answer {decode(ans)}</p>
           <p>{randomizeAns[0]}</p> */}
-          <p>{props.correct_answer}</p>
-          {/* <input
+            {/* <p>{props.correct_answer}</p> */}
+            {/* <input
             type="radio"
             id={index}
             // id={ans}
@@ -76,10 +85,10 @@ export default function QuestionsList(props) {
           />
 
           <label htmlFor="unemployed">{decode(ans)}</label> */}
-          <hr />
-        </div>
-      ))}
-    </form>
+          </div>
+        ))}
+      </form>
+    </div>
   );
 }
 

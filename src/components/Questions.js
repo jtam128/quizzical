@@ -5,6 +5,8 @@ import QuestionsList from "./QuestionsList";
 export default function Questions() {
   const [questions, setQuestions] = React.useState([]);
 
+  // console.clear();
+
   React.useEffect(function () {
     async function getQuestions() {
       const res = await fetch("https://opentdb.com/api.php?amount=1");
@@ -27,18 +29,9 @@ export default function Questions() {
     <div>
       {questions.map((item, index) => (
         <div key={index}>
-          <p>category: {item.category}</p>
-          <p>{decode(item.question)}</p>
-          {/* <p>incorrect answer : {item.incorrect_answers}</p>
-          <p>correct answer : {item.correct_answer}</p> */}
-
-          <QuestionsList
-            incorrect_answers={item.incorrect_answers}
-            correct_answer={item.correct_answer}
-          />
-
+          <QuestionsList item={item} />
           <br />
-          <p>Correct answer: {item.correct_answer}</p>
+          <p>Q Correct answer: {item.correct_answer}</p>
           <hr />
         </div>
       ))}
