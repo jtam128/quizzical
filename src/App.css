@@ -2,3 +2,12 @@
   display: flex;
   justify-content: center;
 }
+
+.ans-container {
+  display: flex;
+  list-style: none;
+}
+
+.ans-container li {
+  padding-left: 0.5em;
+}
