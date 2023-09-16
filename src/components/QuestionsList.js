@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { decode } from "html-entities";
+import { all } from "q";
 
 // const [setselectItem, setSelectItem] = React.useState([]);
 
@@ -23,26 +24,11 @@ export default function QuestionsList(props) {
     return arr;
   }
 
+  //:> xNNN..
   const allAns = [correct_answer, ...incorrect_answers];
-
-  useEffect(() => {
-    // setTempArray(["a", "b", "c"]);
-    // setTempArray(allAns);
-    // return (cleanUp = () => {});
-    // let tempArray1 = shuffleArray(allAns);
-    // let tempArray1 = allAns;
-    // setTempArray(tempArray1);
-    // setTempArray([...allAns]);
-  }, []);
-
-  // let shuffledArray = shuffleArray(allAns);
-
-  // let tempArray1 = shuffleArray(allAns);
-  // setRandomizeAns(shuffleArray(tempArray));
-
-  // setRandomizeAns(allAns);
-
-  // return (cleanUp = () => {});
+  const originalList = allAns.join("--og list--");
+  const randomQuestionList = shuffleArray(allAns);
+  const randomizeList = randomQuestionList.join("--rand list--");
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -54,10 +40,7 @@ export default function QuestionsList(props) {
     });
   }
 
-  if (!randomizeAns) return <p>not ready</p>;
-
-  const printx = 1;
-
+  // :> xCCC..//:> xNNN.. (((())))
   return (
     // <ul className="ans-container">
     <div>
@@ -65,15 +48,22 @@ export default function QuestionsList(props) {
       {/* <h1>{allAns}</h1> */}
       <form>
         {/* {tempArray.map((ans, index) => ( */}
-        {allAns.map((ans, index) => (
+        {true && allAns}
+        <hr />
+        <br />
+        {true && originalList}
+        <br />
+        {true && randomizeList}
+        {randomQuestionList.map((ans, index) => (
           <div key={index}>
             <p>
-              {index} - {ans}
+              {index} - {decode(ans)}
             </p>
 
-            <p>{printx && console.log("aaa", tempArray[0])}</p>
             {/* <p>decode answer {decode(ans)}</p>
           <p>{randomizeAns[0]}</p> */}
+            {/* //:> xNNN..2 */}
+            {/* //:> xCCC..//:> xNNN.. (((()))) */}
             {/* <p>{props.correct_answer}</p> */}
             {/* <input
             type="radio"
