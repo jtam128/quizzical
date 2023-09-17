@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { decode } from "html-entities";
 import { all } from "q";
 
-// const [setselectItem, setSelectItem] = React.useState([]);
-
 export default function QuestionsList(props) {
-  const [tempArray, setTempArray] = React.useState([]);
-  const [formData, setFormData] = React.useState({
-    answer: "",
-  });
+  const [selectedButton, setSelectedButton] = useState(null);
+  const [firstTime, setFirstTime] = useState(true);
 
   const { category, question, incorrect_answers, correct_answer } = props.item;
 
-  // const [randomizeAns, setRandomizeAns] = React.useState([]);
-
-  const randomizeAns = [];
+  const [randomQuestionList, setRandomQuestionList] = useState([]);
 
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -24,31 +18,25 @@ export default function QuestionsList(props) {
     return arr;
   }
 
-  const allAns = [correct_answer, ...incorrect_answers];
-  const originalList = allAns.join("--og list--");
-  const randomQuestionList = shuffleArray(allAns);
-  const randomizeList = randomQuestionList.join("--rand list--");
+  let allAns = [];
+  // let originalList = [];
+  // let randomQuestionList = [];
+  // let randomizeList = [];
+  useEffect(() => {
+    allAns = [correct_answer, ...incorrect_answers];
 
-  // function radioChange(event) {
-  //   console.log(event.target.value);
-  // }
+    // randomQuestionList = shuffleArray(allAns);
+    setRandomQuestionList(shuffleArray(allAns));
+  }, []);
+  const originalList = allAns.join("--OG LIST--");
+  const randomizeList = randomQuestionList.join("--RANDOM LIST--");
 
   function handleChange(id) {
     console.log(`Clicked item with id ${id}`);
+    setSelectedButton(id);
   }
-  // function radioChange(event) {
-  //   console.log("rb value", event.target.value);
-  //   const { name, value, type, checked } = event.target;
-  //   setFormData((prevFormData) => {
-  //     return {
-  //       ...prevFormData,
-  //       [name]: type === "checkbox" ? checked : value,
-  //     };
-  //   });
-  // }
 
   return (
-    // <ul className="ans-container">
     <div>
       <h1>{decode(question)}</h1>
       {/* <h1>{allAns}</h1> */}
@@ -64,31 +52,17 @@ export default function QuestionsList(props) {
           {randomQuestionList.map((ans, index) => (
             <div key={index}>
               <li
-                className="ans"
+                // className="ans"
                 key={index}
+                className={selectedButton === index ? "selected ans" : "ans"}
                 onClick={() => handleChange(index)}
               >
-                {ans}
+                {decode(ans)}
               </li>
               {/* <p>
               {index} - {decode(ans)}
-            </p> */}
-
-              {/* <p>decode answer {decode(ans)}</p>
-          <p>{randomizeAns[0]}</p> */}
-              {/* <p>{props.correct_answer}</p> */}
-              {/* <input
-              type="radio"
-              id={index}
-              // id={ans}
-              name="answer"
-              value={decode(ans)}
-              // checked={formData.ans === decode(ans)}
-              // onChange={handleChange(this)}
-              onChange={(e) => radioChange(e)}
-            />
-
-            <label htmlFor={decode(ans)}>{decode(ans)}</label> */}
+              </p> */}
+              {/* <p>{randomizeAns[0]}</p> */}
             </div>
           ))}
         </ul>
@@ -96,26 +70,3 @@ export default function QuestionsList(props) {
     </div>
   );
 }
-
-/*
-
-const allAns = questions.map((item) => [
-  ...item.incorrect_answers,
-  item.correct_answer,
-]);
-
-questions.forEach((item) => {
-  item.allAns = allAns;
-  let id = 0;
-  item.allAns.forEach((item) => (item.id = id++));
-
-
-  item.answers = Object.keys(item).forEach((question) =>
-    item.allAns.forEach((ans) => {
-      if (question.id !== ans.id) {
-        ans.splice(ans, 1);
-      }
-    })
-  );
-});
-*/

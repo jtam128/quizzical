@@ -9,7 +9,7 @@ export default function Questions() {
 
   React.useEffect(function () {
     async function getQuestions() {
-      const res = await fetch("https://opentdb.com/api.php?amount=3");
+      const res = await fetch("https://opentdb.com/api.php?amount=2");
       const data = await res.json();
       setQuestions(data.results);
 
