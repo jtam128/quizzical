@@ -11,7 +11,7 @@ export default function Start() {
   return (
     <div className="start">
       {showComponent ? (
-        <div>
+        <div className="start-page">
           <h1 className="start-title">Quizzical</h1>
           <button onClick={handleClick}>Start quiz</button>
         </div>

@@ -26,7 +26,7 @@ export default function Questions() {
 
   if (!questions) return <p>loading question</p>;
   return (
-    <div>
+    <div className="questions">
       {questions.map((item, index) => (
         <div key={index}>
           <QuestionsList item={item} />

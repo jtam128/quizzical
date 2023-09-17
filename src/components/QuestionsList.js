@@ -38,35 +38,35 @@ export default function QuestionsList(props) {
 
   return (
     <div>
-      <h1>{decode(question)}</h1>
+      <h1 className="question">{decode(question)}</h1>
       {/* <h1>{allAns}</h1> */}
-      <form>
-        {/* {tempArray.map((ans, index) => ( */}
-        {true && allAns}
-        <hr />
-        <br />
-        {true && originalList}
-        <br />
-        {true && randomizeList}
-        <ul className="ans-container">
-          {randomQuestionList.map((ans, index) => (
-            <div key={index}>
-              <li
-                // className="ans"
-                key={index}
-                className={selectedButton === index ? "selected ans" : "ans"}
-                onClick={() => handleChange(index)}
-              >
-                {decode(ans)}
-              </li>
-              {/* <p>
+      {/* <form> */}
+      {/* {tempArray.map((ans, index) => ( */}
+      {true && allAns}
+      {/* <hr /> */}
+      <br />
+      {true && originalList}
+      <br />
+      {true && randomizeList}
+      <ul className="ans-container">
+        {randomQuestionList.map((ans, index) => (
+          <div key={index}>
+            <li
+              // className="ans"
+              key={index}
+              className={selectedButton === index ? "selected ans" : "ans"}
+              onClick={() => handleChange(index)}
+            >
+              {decode(ans)}
+            </li>
+            {/* <p>
               {index} - {decode(ans)}
               </p> */}
-              {/* <p>{randomizeAns[0]}</p> */}
-            </div>
-          ))}
-        </ul>
-      </form>
+            {/* <p>{randomizeAns[0]}</p> */}
+          </div>
+        ))}
+      </ul>
+      {/* </form> */}
     </div>
   );
 }
