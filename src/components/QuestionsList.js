@@ -7,7 +7,7 @@ import { all } from "q";
 export default function QuestionsList(props) {
   const [tempArray, setTempArray] = React.useState([]);
   const [formData, setFormData] = React.useState({
-    employment: "",
+    answer: "",
   });
 
   const { category, question, incorrect_answers, correct_answer } = props.item;
@@ -24,23 +24,29 @@ export default function QuestionsList(props) {
     return arr;
   }
 
-  //:> xNNN..
   const allAns = [correct_answer, ...incorrect_answers];
   const originalList = allAns.join("--og list--");
   const randomQuestionList = shuffleArray(allAns);
   const randomizeList = randomQuestionList.join("--rand list--");
 
-  function handleChange(event) {
-    const { name, value, type, checked } = event.target;
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: type === "checkbox" ? checked : value,
-      };
-    });
-  }
+  // function radioChange(event) {
+  //   console.log(event.target.value);
+  // }
 
-  // :> xCCC..//:> xNNN.. (((())))
+  function handleChange(id) {
+    console.log(`Clicked item with id ${id}`);
+  }
+  // function radioChange(event) {
+  //   console.log("rb value", event.target.value);
+  //   const { name, value, type, checked } = event.target;
+  //   setFormData((prevFormData) => {
+  //     return {
+  //       ...prevFormData,
+  //       [name]: type === "checkbox" ? checked : value,
+  //     };
+  //   });
+  // }
+
   return (
     // <ul className="ans-container">
     <div>
@@ -54,29 +60,38 @@ export default function QuestionsList(props) {
         {true && originalList}
         <br />
         {true && randomizeList}
-        {randomQuestionList.map((ans, index) => (
-          <div key={index}>
-            <p>
+        <ul className="ans-container">
+          {randomQuestionList.map((ans, index) => (
+            <div key={index}>
+              <li
+                className="ans"
+                key={index}
+                onClick={() => handleChange(index)}
+              >
+                {ans}
+              </li>
+              {/* <p>
               {index} - {decode(ans)}
-            </p>
+            </p> */}
 
-            {/* <p>decode answer {decode(ans)}</p>
+              {/* <p>decode answer {decode(ans)}</p>
           <p>{randomizeAns[0]}</p> */}
-            {/* //:> xNNN..2 */}
-            {/* //:> xCCC..//:> xNNN.. (((()))) */}
-            {/* <p>{props.correct_answer}</p> */}
-            {/* <input
-            type="radio"
-            id={index}
-            // id={ans}
-            name="answer"
-            value={decode(ans)}
-            onChange={handleChange}
-          />
+              {/* <p>{props.correct_answer}</p> */}
+              {/* <input
+              type="radio"
+              id={index}
+              // id={ans}
+              name="answer"
+              value={decode(ans)}
+              // checked={formData.ans === decode(ans)}
+              // onChange={handleChange(this)}
+              onChange={(e) => radioChange(e)}
+            />
 
-          <label htmlFor="unemployed">{decode(ans)}</label> */}
-          </div>
-        ))}
+            <label htmlFor={decode(ans)}>{decode(ans)}</label> */}
+            </div>
+          ))}
+        </ul>
       </form>
     </div>
   );

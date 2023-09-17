@@ -5,9 +5,10 @@
 
 .ans-container {
   display: flex;
-  list-style: none;
 }
 
-.ans-container li {
-  padding-left: 0.5em;
+.ans {
+  list-style: none;
+  padding-left: 3em;
+  cursor: pointer;
 }
