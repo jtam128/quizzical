@@ -35,6 +35,8 @@ export default function Questions() {
           <hr />
         </div>
       ))}
+
+      {/* <button>Check answers</button> */}
     </div>
   );
 }
