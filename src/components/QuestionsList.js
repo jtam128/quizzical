@@ -3,12 +3,17 @@ import { decode } from "html-entities";
 import { all } from "q";
 
 export default function QuestionsList(props) {
+  const [setselectIndex, setSetselectIndex] = useState(0);
+
   const [selectedButton, setSelectedButton] = useState(null);
-  const [firstTime, setFirstTime] = useState(true);
 
   const { category, question, incorrect_answers, correct_answer } = props.item;
 
   const [randomQuestionList, setRandomQuestionList] = useState([]);
+
+  if (props.checkAnsFlag) {
+    props.handleClick("//test result");
+  }
 
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -19,12 +24,8 @@ export default function QuestionsList(props) {
   }
 
   let allAns = [];
-  // let originalList = [];
-  // let randomQuestionList = [];
-  // let randomizeList = [];
   useEffect(() => {
     allAns = [correct_answer, ...incorrect_answers];
-
     // randomQuestionList = shuffleArray(allAns);
     setRandomQuestionList(shuffleArray(allAns));
   }, []);
@@ -33,19 +34,15 @@ export default function QuestionsList(props) {
   const randomizeList = randomQuestionList.join("--RANDOM LIST--");
 
   function handleChange(id) {
-    console.log(`Clicked item with id ${id}`);
     setSelectedButton(id);
+    console.log(`Clicked item with id ${id}`);
   }
 
   return (
     <>
       <div>
         <h1 className="question">{decode(question)}</h1>
-        {/* <h1>{allAns}</h1> */}
-        {/* <form> */}
-        {/* {tempArray.map((ans, index) => ( */}
         {true && allAns}
-        {/* <hr /> */}
         <br />
         {true && originalList}
         <br />
@@ -61,17 +58,10 @@ export default function QuestionsList(props) {
               >
                 {decode(ans)}
               </li>
-              {/* <p>
-              {index} - {decode(ans)}
-              </p> */}
-              {/* <p>{randomizeAns[0]}</p> */}
             </div>
           ))}
         </ul>
-
-        {/* </form> */}
       </div>
-      <button>Check answers</button>
     </>
   );
 }

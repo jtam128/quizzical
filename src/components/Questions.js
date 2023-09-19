@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { decode } from "html-entities";
 import QuestionsList from "./QuestionsList";
 
 export default function Questions() {
+  const [checkAnsFlag, setCheckAnsFlag] = useState(false);
+  const [result, setResult] = useState("");
   const [questions, setQuestions] = React.useState([]);
-
-  // console.clear();
 
   React.useEffect(function () {
     async function getQuestions() {
-      const res = await fetch("https://opentdb.com/api.php?amount=2");
+      const res = await fetch("https://opentdb.com/api.php?amount=1");
       const data = await res.json();
       setQuestions(data.results);
-
-      // let id = 0;
-      // data.results.forEach((item) => (item.id = id++));
     }
     getQuestions();
   }, []);
@@ -24,19 +21,37 @@ export default function Questions() {
   // if id from each array is equal, assign the allAns array to that question array
   // if id from allAns is !== to id from question object, then remove those other arrays in allAns
 
+  function handleAnswerClick(data) {
+    console.log("data = " + data);
+  }
+
   if (!questions) return <p>loading question</p>;
   return (
     <div className="questions">
       {questions.map((item, index) => (
         <div key={index}>
-          <QuestionsList item={item} />
+          <QuestionsList
+            item={item}
+            handleClick={handleAnswerClick}
+            checkAnsFlag={checkAnsFlag}
+          />
           <br />
           <p>Q Correct answer: {item.correct_answer}</p>
           <hr />
         </div>
       ))}
-
-      {/* <button>Check answers</button> */}
+      {checkAnsFlag ? (
+        <button>restart</button>
+      ) : (
+        <button
+          onClick={() => {
+            // console.log("in here");
+            setCheckAnsFlag((prevState) => !prevState);
+          }}
+        >
+          check answer
+        </button>
+      )}
     </div>
   );
 }

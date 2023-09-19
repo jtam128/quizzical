@@ -6,8 +6,8 @@ import Questions from "./components/Questions";
 export default function App() {
   return (
     <div>
-      <Start />
-      {/* <Questions /> */}
+      {/* <Start /> */}
+      <Questions />
     </div>
   );
 }
