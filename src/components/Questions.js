@@ -7,14 +7,19 @@ export default function Questions() {
   const [result, setResult] = useState("");
   const [questions, setQuestions] = React.useState([]);
 
-  React.useEffect(function () {
-    async function getQuestions() {
-      const res = await fetch("https://opentdb.com/api.php?amount=1");
-      const data = await res.json();
-      setQuestions(data.results);
-    }
-    getQuestions();
-  }, []);
+  React.useEffect(
+    function () {
+      async function getQuestions() {
+        const res = await fetch("https://opentdb.com/api.php?amount=2");
+        const data = await res.json();
+        setQuestions(data.results);
+      }
+      if (!checkAnsFlag) {
+        getQuestions();
+      }
+    },
+    [checkAnsFlag]
+  );
 
   // loop through questions array
   // loop through allAns array
@@ -22,7 +27,7 @@ export default function Questions() {
   // if id from allAns is !== to id from question object, then remove those other arrays in allAns
 
   function handleAnswerClick(data) {
-    console.log("data = " + data);
+    setResult(data);
   }
 
   if (!questions) return <p>loading question</p>;
@@ -41,12 +46,24 @@ export default function Questions() {
         </div>
       ))}
       {checkAnsFlag ? (
-        <button>restart</button>
+        <>
+          <p>{result}</p>
+          <button
+            onClick={() => {
+              // console.log("in here");
+              window.location.reload();
+              // setCheckAnsFlag(false);
+            }}
+          >
+            play again
+          </button>
+        </>
       ) : (
+        // checkAns is false
         <button
           onClick={() => {
             // console.log("in here");
-            setCheckAnsFlag((prevState) => !prevState);
+            setCheckAnsFlag(true);
           }}
         >
           check answer
