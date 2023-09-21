@@ -34,3 +34,19 @@
   border: 3px #293264 solid;
   background-color: #d6dbf5;
 }
+
+.green {
+  background-color: greenyellow;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.grey {
+  background-color: grey;
+}

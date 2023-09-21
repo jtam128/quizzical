@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { decode } from "html-entities";
+import { findMatchingIndex } from "../util.js";
 
 export default function QuestionsList(props) {
-  const [selectedButton, setSelectedButton] = useState(null);
-  const { category, question, incorrect_answers, correct_answer } = props.item;
   const [randomQuestionList, setRandomQuestionList] = useState([]);
+  const [correctAnsIndex, setCorrectAnsIndex] = useState(-1);
+  // var..
+  const [selectedAnsIndex, setSelectedAnsIndex] = useState(-1);
 
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -16,28 +18,54 @@ export default function QuestionsList(props) {
 
   let allAns = [];
   useEffect(() => {
+    const { category, question, incorrect_answers, correct_answer } =
+      props.item;
     if (!props.checkAnsFlag) {
       allAns = [correct_answer, ...incorrect_answers];
       // randomQuestionList = shuffleArray(allAns);
-      setRandomQuestionList(shuffleArray(allAns));
+      let tempArray = [];
+      tempArray = shuffleArray(allAns);
+      const correctAnsIndex = findMatchingIndex(correct_answer, tempArray);
+      setCorrectAnsIndex(correctAnsIndex);
+      setRandomQuestionList(tempArray);
+      // debugger;
+    } else {
+      // check answer
+      props.handleClick("You scored 3/5");
     }
   }, [props.checkAnsFlag]);
 
   const originalList = allAns.join("--OG LIST--");
-  const randomizeList = randomQuestionList.join("--RANDOM LIST--");
+  const randomizeList = randomQuestionList.join("--RL--");
 
   function handleAnsClick(id) {
-    setSelectedButton(id);
+    setSelectedAnsIndex(id);
+    console.log(`Clicked item with id ${id}`);
   }
 
-  if (props.checkAnsFlag) {
-    props.handleClick("You scored 3/5");
+  // const ans1 = true ? <p>hi</p> : <p>temp</p>;
+  function colorChange(index) {
+    if (selectedAnsIndex === correctAnsIndex) {
+      if (index === selectedAnsIndex) {
+        return "selected ans green";
+      } else {
+        return "ans grey";
+      }
+    } else {
+      if (index === correctAnsIndex) {
+        return "selected ans green";
+      } else if (index === selectedAnsIndex) {
+        return "selected ans red";
+      } else {
+        return "ans grey";
+      }
+    }
   }
 
   return (
     <>
       <div>
-        <h1 className="question">{decode(question)}</h1>
+        <h1 className="question">{decode(props.item.question)}</h1>
         {true && allAns}
         <br />
         {true && originalList}
@@ -50,16 +78,23 @@ export default function QuestionsList(props) {
                 <li
                   // className="ans"
                   key={index}
-                  className={selectedButton === index ? "selected ans" : "ans"}
+                  className={
+                    selectedAnsIndex === index ? "selected ans" : "ans"
+                  }
                   onClick={() => handleAnsClick(index)}
                 >
                   {decode(ans)}
                 </li>
               ) : (
-                <p> color your answer here</p>
+                // JES : work on below
+                // { ansComponent }
+                <>
+                  {true && index}
+                  <li key={index} className={colorChange(index)}>
+                    {decode(ans)}
+                  </li>
+                </>
               )}
-
-              {/* {decode(ans)} */}
             </div>
           ))}
         </ul>

@@ -21,13 +21,9 @@ export default function Questions() {
     [checkAnsFlag]
   );
 
-  // loop through questions array
-  // loop through allAns array
-  // if id from each array is equal, assign the allAns array to that question array
-  // if id from allAns is !== to id from question object, then remove those other arrays in allAns
-
   function handleAnswerClick(data) {
     setResult(data);
+    console.log("data = " + data);
   }
 
   if (!questions) return <p>loading question</p>;
@@ -36,6 +32,7 @@ export default function Questions() {
       {questions.map((item, index) => (
         <div key={index}>
           <QuestionsList
+            questionNum={index}
             item={item}
             handleClick={handleAnswerClick}
             checkAnsFlag={checkAnsFlag}
