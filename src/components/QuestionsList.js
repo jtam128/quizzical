@@ -5,8 +5,8 @@ import { findMatchingIndex } from "../util.js";
 export default function QuestionsList(props) {
   const [randomQuestionList, setRandomQuestionList] = useState([]);
   const [correctAnsIndex, setCorrectAnsIndex] = useState(-1);
-  // var..
   const [selectedAnsIndex, setSelectedAnsIndex] = useState(-1);
+  // var..
 
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -17,6 +17,7 @@ export default function QuestionsList(props) {
   }
 
   let allAns = [];
+
   useEffect(() => {
     const { category, question, incorrect_answers, correct_answer } =
       props.item;
@@ -31,7 +32,6 @@ export default function QuestionsList(props) {
       // debugger;
     } else {
       // check answer
-      props.handleClick("You scored 3/5");
     }
   }, [props.checkAnsFlag]);
 
@@ -43,8 +43,11 @@ export default function QuestionsList(props) {
     console.log(`Clicked item with id ${id}`);
   }
 
-  // const ans1 = true ? <p>hi</p> : <p>temp</p>;
   function colorChange(index) {
+    if (index === 0)
+      if (selectedAnsIndex === correctAnsIndex) props.handleCheckScore(true);
+      else props.handleCheckScore(false);
+
     if (selectedAnsIndex === correctAnsIndex) {
       if (index === selectedAnsIndex) {
         return "selected ans green";

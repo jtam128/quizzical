@@ -21,8 +21,10 @@ export default function Questions() {
     [checkAnsFlag]
   );
 
-  function handleAnswerClick(data) {
-    setResult(data);
+  function handleCheckScore(data) {
+    // come in as true or false
+    //have to use length of the questions, do calculation,
+    // setResult(data);
     console.log("data = " + data);
   }
 
@@ -34,7 +36,7 @@ export default function Questions() {
           <QuestionsList
             questionNum={index}
             item={item}
-            handleClick={handleAnswerClick}
+            handleCheckScore={handleCheckScore}
             checkAnsFlag={checkAnsFlag}
           />
           <br />
