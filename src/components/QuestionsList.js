@@ -6,7 +6,6 @@ export default function QuestionsList(props) {
   const [randomQuestionList, setRandomQuestionList] = useState([]);
   const [correctAnsIndex, setCorrectAnsIndex] = useState(-1);
   const [selectedAnsIndex, setSelectedAnsIndex] = useState(-1);
-  // var..
 
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -23,24 +22,19 @@ export default function QuestionsList(props) {
       props.item;
     if (!props.checkAnsFlag) {
       allAns = [correct_answer, ...incorrect_answers];
-      // randomQuestionList = shuffleArray(allAns);
       let tempArray = [];
       tempArray = shuffleArray(allAns);
       const correctAnsIndex = findMatchingIndex(correct_answer, tempArray);
       setCorrectAnsIndex(correctAnsIndex);
       setRandomQuestionList(tempArray);
-      // debugger;
-    } else {
-      // check answer
     }
   }, [props.checkAnsFlag]);
 
-  const originalList = allAns.join("--OG LIST--");
-  const randomizeList = randomQuestionList.join("--RL--");
+  // const originalList = allAns.join("--OG LIST--");
+  // const randomizeList = randomQuestionList.join("--RL--");
 
   function handleAnsClick(id) {
     setSelectedAnsIndex(id);
-    console.log(`Clicked item with id ${id}`);
   }
 
   function colorChange(index) {
@@ -69,17 +63,11 @@ export default function QuestionsList(props) {
     <>
       <div>
         <h1 className="question">{decode(props.item.question)}</h1>
-        {true && allAns}
-        <br />
-        {true && originalList}
-        <br />
-        {true && randomizeList}
         <ul className="ans-container">
           {randomQuestionList.map((ans, index) => (
             <div key={index}>
               {!props.checkAnsFlag ? (
                 <li
-                  // className="ans"
                   key={index}
                   className={
                     selectedAnsIndex === index ? "selected ans" : "ans"
@@ -89,8 +77,6 @@ export default function QuestionsList(props) {
                   {decode(ans)}
                 </li>
               ) : (
-                // JES : work on below
-                // { ansComponent }
                 <>
                   {true && index}
                   <li key={index} className={colorChange(index)}>

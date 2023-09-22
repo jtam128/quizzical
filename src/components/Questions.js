@@ -10,7 +10,7 @@ export default function Questions() {
   React.useEffect(
     function () {
       async function getQuestions() {
-        const res = await fetch("https://opentdb.com/api.php?amount=2");
+        const res = await fetch("https://opentdb.com/api.php?amount=3");
         const data = await res.json();
         setQuestions(data.results);
       }
@@ -21,11 +21,25 @@ export default function Questions() {
     [checkAnsFlag]
   );
 
+  let correct = 0;
+  let wrong = 0;
+  let totalQuestions = 0;
+  let tempResult = "";
   function handleCheckScore(data) {
-    // come in as true or false
-    //have to use length of the questions, do calculation,
-    // setResult(data);
     console.log("data = " + data);
+    if (data === false) {
+      wrong++;
+      totalQuestions++;
+    }
+    if (data === true) {
+      correct++;
+      totalQuestions++;
+    }
+
+    if (totalQuestions === questions.length) {
+      tempResult = `${correct}/${totalQuestions} is correct`;
+      setResult(tempResult);
+    }
   }
 
   if (!questions) return <p>loading question</p>;
@@ -49,19 +63,15 @@ export default function Questions() {
           <p>{result}</p>
           <button
             onClick={() => {
-              // console.log("in here");
               window.location.reload();
-              // setCheckAnsFlag(false);
             }}
           >
             play again
           </button>
         </>
       ) : (
-        // checkAns is false
         <button
           onClick={() => {
-            // console.log("in here");
             setCheckAnsFlag(true);
           }}
         >
