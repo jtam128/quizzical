@@ -78,7 +78,7 @@ export default function QuestionsList(props) {
                 </li>
               ) : (
                 <>
-                  {true && index}
+                  {/* {true && index} */}
                   <li key={index} className={colorChange(index)}>
                     {decode(ans)}
                   </li>

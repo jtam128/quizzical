@@ -37,7 +37,7 @@ export default function Questions() {
     }
 
     if (totalQuestions === questions.length) {
-      tempResult = `${correct}/${totalQuestions} is correct`;
+      tempResult = `You scored ${correct}/${totalQuestions} correct answers`;
       setResult(tempResult);
     }
   }
@@ -59,24 +59,29 @@ export default function Questions() {
         </div>
       ))}
       {checkAnsFlag ? (
-        <>
+        <div className="btn-div">
+          {/* // <div> */}
           <p>{result}</p>
           <button
+            className="play-again-btn"
             onClick={() => {
               window.location.reload();
             }}
           >
             play again
           </button>
-        </>
+        </div>
       ) : (
-        <button
-          onClick={() => {
-            setCheckAnsFlag(true);
-          }}
-        >
-          check answer
-        </button>
+        <div className="btn-div">
+          <button
+            className="check-ans-btn"
+            onClick={() => {
+              setCheckAnsFlag(true);
+            }}
+          >
+            check answers
+          </button>
+        </div>
       )}
     </div>
   );
