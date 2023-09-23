@@ -26,7 +26,7 @@ export default function Questions() {
   let totalQuestions = 0;
   let tempResult = "";
   function handleCheckScore(data) {
-    console.log("data = " + data);
+    // console.log("data = " + data);
     if (data === false) {
       wrong++;
       totalQuestions++;

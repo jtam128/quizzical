@@ -11,7 +11,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
+  height: 100vh;
+}
+
+.start-page-title {
+  font-family: "Karla", sans-serif;
+}
+
+.start-page-btn {
+  background-color: #4d5b9e;
+  color: #f5f7fb;
+  padding: 15px 45px;
+  font-family: "Inter", sans-serif;
+  border-radius: 13px;
+}
+
+body {
+  background-color: #f5f7fb;
+  background: url("images/blue-blob.png"), url("images/yellow-blob.png");
+  background-position: bottom left, top right;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .ans-container {
