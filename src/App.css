@@ -33,6 +33,7 @@ body {
   background-position: bottom left, top right;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: 25% auto;
 }
 
 .ans-container {
