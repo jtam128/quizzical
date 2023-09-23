@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { decode } from "html-entities";
 import { findMatchingIndex } from "../util.js";
 
@@ -18,8 +18,7 @@ export default function QuestionsList(props) {
   let allAns = [];
 
   useEffect(() => {
-    const { category, question, incorrect_answers, correct_answer } =
-      props.item;
+    const { incorrect_answers, correct_answer } = props.item;
     if (!props.checkAnsFlag) {
       allAns = [correct_answer, ...incorrect_answers];
       let tempArray = [];
@@ -29,9 +28,6 @@ export default function QuestionsList(props) {
       setRandomQuestionList(tempArray);
     }
   }, [props.checkAnsFlag]);
-
-  // const originalList = allAns.join("--OG LIST--");
-  // const randomizeList = randomQuestionList.join("--RL--");
 
   function handleAnsClick(id) {
     setSelectedAnsIndex(id);
@@ -78,7 +74,6 @@ export default function QuestionsList(props) {
                 </li>
               ) : (
                 <>
-                  {/* {true && index} */}
                   <li key={index} className={colorChange(index)}>
                     {decode(ans)}
                   </li>

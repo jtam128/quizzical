@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { decode } from "html-entities";
+import React, { useState } from "react";
 import QuestionsList from "./QuestionsList";
 
 export default function Questions() {
@@ -26,7 +25,6 @@ export default function Questions() {
   let totalQuestions = 0;
   let tempResult = "";
   function handleCheckScore(data) {
-    // console.log("data = " + data);
     if (data === false) {
       wrong++;
       totalQuestions++;
@@ -60,7 +58,6 @@ export default function Questions() {
       ))}
       {checkAnsFlag ? (
         <div className="btn-div">
-          {/* // <div> */}
           <p>{result}</p>
           <button
             className="play-again-btn"
