@@ -1,4 +1,6 @@
-# Quizzical Project
+# Quizzical
+
+A React-based project that uses data from the [Open Trivia Database](https://opentdb.com/) to display 5 questions and answers.
 
 # Getting Started with Create React App
 
