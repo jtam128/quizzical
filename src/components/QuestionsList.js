@@ -26,8 +26,9 @@ export default function QuestionsList(props) {
       const correctAnsIndex = findMatchingIndex(correct_answer, tempArray);
       setCorrectAnsIndex(correctAnsIndex);
       setRandomQuestionList(tempArray);
+      setSelectedAnsIndex(-1);
     }
-  }, [props.checkAnsFlag]);
+  }, [props.item]);
 
   function handleAnsClick(id) {
     setSelectedAnsIndex(id);

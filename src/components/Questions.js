@@ -62,7 +62,7 @@ export default function Questions() {
           <button
             className="play-again-btn"
             onClick={() => {
-              window.location.reload();
+              setCheckAnsFlag(false);
             }}
           >
             play again

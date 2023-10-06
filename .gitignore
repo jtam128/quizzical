@@ -33,4 +33,6 @@ node_modules
 *.log
 info.log
 build
+index-react.html
+index-scrimba.html
 
