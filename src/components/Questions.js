@@ -6,6 +6,8 @@ export default function Questions() {
   const [result, setResult] = useState("");
   const [questions, setQuestions] = React.useState([]);
 
+  const [showBtn, setShowBtn] = useState(false);
+
   React.useEffect(
     function () {
       async function getQuestions() {
@@ -16,6 +18,10 @@ export default function Questions() {
       if (!checkAnsFlag) {
         getQuestions();
       }
+
+      setTimeout(() => {
+        setShowBtn(!showBtn);
+      }, 1500);
     },
     [checkAnsFlag]
   );
@@ -70,14 +76,16 @@ export default function Questions() {
         </div>
       ) : (
         <div className="btn-div">
-          <button
-            className="check-ans-btn"
-            onClick={() => {
-              setCheckAnsFlag(true);
-            }}
-          >
-            check answers
-          </button>
+          {showBtn && (
+            <button
+              className="check-ans-btn"
+              onClick={() => {
+                setCheckAnsFlag(true);
+              }}
+            >
+              check answers
+            </button>
+          )}
         </div>
       )}
     </div>
