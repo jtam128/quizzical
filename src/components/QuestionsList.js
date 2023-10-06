@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { decode } from "html-entities";
-import { findMatchingIndex } from "../util.js";
+import { findMatchingIndex, shuffleArray } from "../util.js";
 
 export default function QuestionsList(props) {
   const [randomQuestionList, setRandomQuestionList] = useState([]);
   const [correctAnsIndex, setCorrectAnsIndex] = useState(-1);
   const [selectedAnsIndex, setSelectedAnsIndex] = useState(-1);
-
-  function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
 
   let allAns = [];
 
