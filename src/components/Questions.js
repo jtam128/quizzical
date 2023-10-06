@@ -58,7 +58,7 @@ export default function Questions() {
             checkAnsFlag={checkAnsFlag}
           />
           <br />
-          <p>Q Correct answer: {item.correct_answer}</p>
+          {/* <p>Q Correct answer: {item.correct_answer}</p> */}
           <hr />
         </div>
       ))}

@@ -2,6 +2,20 @@
 
 A React-based project that uses data from the [Open Trivia Database](https://opentdb.com/) to display 5 questions and answers.
 
+## Start Screen
+
+![start-screen](src/images/start-screen.png)
+
+## Select Answers Screen
+
+![select-ans-screen](src/images/select-ans-screen.png)
+
+## Results Screen
+
+![results-screen](src/images/results-screen.png)
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
