@@ -2,6 +2,8 @@
 
 A React-based project that uses data from the [Open Trivia Database](https://opentdb.com/) to display 5 questions and answers.
 
+[Live Link](https://quizzical-jt.netlify.app/)
+
 ## Start Screen
 
 ![start-screen](src/images/start-screen.png)
