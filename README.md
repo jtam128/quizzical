@@ -18,7 +18,7 @@ A React-based project that uses data from the [Open Trivia Database](https://ope
 
 ## Small Width Screen
 
-## ![small-width-screen](src/images/small-screen.gif)
+![small-width-screen](src/images/small-screen.gif)
 
 ---
 
