@@ -16,6 +16,10 @@ A React-based project that uses data from the [Open Trivia Database](https://ope
 
 ![results-screen](src/images/results-screen.png)
 
+## Small Width Screen
+
+## ![small-width-screen](src/images/small-screen.gif)
+
 ---
 
 # Getting Started with Create React App
