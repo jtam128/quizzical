@@ -18,13 +18,13 @@ export default function Questions() {
       if (!checkAnsFlag) {
         getQuestions();
       }
-
-      setTimeout(() => {
-        setShowBtn(!showBtn);
-      }, 1500);
     },
     [checkAnsFlag]
   );
+
+  React.useEffect(() => {
+    setTimeout(() => setShowBtn(!showBtn), 1500);
+  }, []);
 
   let correct = 0;
   let wrong = 0;
@@ -58,7 +58,6 @@ export default function Questions() {
             checkAnsFlag={checkAnsFlag}
           />
           <br />
-          {/* <p>Q Correct answer: {item.correct_answer}</p> */}
           <hr />
         </div>
       ))}
