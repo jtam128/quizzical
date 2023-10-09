@@ -23,7 +23,7 @@ export default function Questions() {
   );
 
   React.useEffect(() => {
-    setTimeout(() => setShowBtn(!showBtn), 1500);
+    setTimeout(() => setShowBtn(!showBtn), 1200);
   }, []);
 
   let correct = 0;
